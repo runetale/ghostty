@@ -662,6 +662,7 @@ ghostty_input_trigger_s ghostty_config_trigger(ghostty_config_t,
 uint32_t ghostty_config_diagnostics_count(ghostty_config_t);
 ghostty_diagnostic_s ghostty_config_get_diagnostic(ghostty_config_t, uint32_t);
 void ghostty_config_open();
+void ghostty_ifconfig();
 
 ghostty_app_t ghostty_app_new(const ghostty_runtime_config_s*,
                               ghostty_config_t);
