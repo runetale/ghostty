@@ -1,6 +1,7 @@
 const builtin = @import("builtin");
 const build_config = @import("../build_config.zig");
 const posix = std.posix;
+const internal_os = @import("main.zig");
 const std = @import("std");
 
 const log = std.log.scoped(.runetale);
@@ -18,12 +19,7 @@ const c = if (builtin.os.tag != .windows) @cImport({
 
 pub fn isLaunchedRunetale() bool {
     return switch (builtin.os.tag) {
-        .macos => macos: {
-            if (build_config.artifact == .lib and
-                posix.getenv("GHOSTTY_MAC_APP") != null) break :macos true;
-
-            break :macos c.getppid() == 1;
-        },
+        .macos => return checkMacProcess(),
 
         .linux => return checkLinuxProcess(),
 
@@ -35,7 +31,7 @@ pub fn isLaunchedRunetale() bool {
     };
 }
 
-fn checkLinuxProcess() void {
+fn checkLinuxProcess() bool {
     var dirIter = try std.fs.cwd().openDir("/proc", .{.iterate= true});
     defer dirIter.close();
     
@@ -56,4 +52,26 @@ fn checkLinuxProcess() void {
     }
 
     return false;
+}
+
+fn checkMacProcess() bool {
+    const allocator = std.heap.page_allocator;
+
+    const run = std.process.Child.run(.{
+        .allocator = allocator,
+        .argv = &[_][]const u8{ "/bin/sh", "-c", "ps aux | grep runetaled" },
+    });
+
+    if (run.term == .Exited and run.term.Exited == 0) {
+        const result = trimSpace(run.stdout);
+        // todo: check buf?
+        if (0 > result.len) return false;
+        return true;
+    }
+
+    return false;
+}
+
+fn trimSpace(input: []const u8) []const u8 {
+    return std.mem.trim(u8, input, " \n\t");
 }
