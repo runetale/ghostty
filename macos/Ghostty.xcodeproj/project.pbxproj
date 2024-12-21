@@ -10,6 +10,7 @@
 		29C15B1D2CDC3B2900520DD4 /* bat in Resources */ = {isa = PBXBuildFile; fileRef = 29C15B1C2CDC3B2000520DD4 /* bat */; };
 		55154BE02B33911F001622DC /* ghostty in Resources */ = {isa = PBXBuildFile; fileRef = 55154BDF2B33911F001622DC /* ghostty */; };
 		552964E62B34A9B400030505 /* vim in Resources */ = {isa = PBXBuildFile; fileRef = 552964E52B34A9B400030505 /* vim */; };
+		6517A0E32D162169005B6A1D /* Ghostty.Runetale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517A0E22D162169005B6A1D /* Ghostty.Runetale.swift */; };
 		857F63812A5E64F200CA4815 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857F63802A5E64F200CA4815 /* MainMenu.xib */; };
 		A514C8D62B54A16400493A16 /* Ghostty.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514C8D52B54A16400493A16 /* Ghostty.Config.swift */; };
 		A514C8D72B54A16400493A16 /* Ghostty.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514C8D52B54A16400493A16 /* Ghostty.Config.swift */; };
@@ -103,6 +104,7 @@
 		3B39CAA42B33949B00DABEB8 /* GhosttyReleaseLocal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GhosttyReleaseLocal.entitlements; sourceTree = "<group>"; };
 		55154BDF2B33911F001622DC /* ghostty */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ghostty; path = "../zig-out/share/ghostty"; sourceTree = "<group>"; };
 		552964E52B34A9B400030505 /* vim */ = {isa = PBXFileReference; lastKnownFileType = folder; name = vim; path = "../zig-out/share/vim"; sourceTree = "<group>"; };
+		6517A0E22D162169005B6A1D /* Ghostty.Runetale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ghostty.Runetale.swift; sourceTree = "<group>"; };
 		857F63802A5E64F200CA4815 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		A514C8D52B54A16400493A16 /* Ghostty.Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ghostty.Config.swift; sourceTree = "<group>"; };
 		A51B78462AF4B58B00F3EDB9 /* TerminalWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalWindow.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				A59FB5CE2AE0DB50009128F3 /* InspectorView.swift */,
 				A53D0C992B543F3B00305CE6 /* Ghostty.App.swift */,
 				A514C8D52B54A16400493A16 /* Ghostty.Config.swift */,
+				6517A0E22D162169005B6A1D /* Ghostty.Runetale.swift */,
 				A53A6C022CCC1B7D00943E98 /* Ghostty.Action.swift */,
 				A5278A9A2AA05B2600CD3039 /* Ghostty.Input.swift */,
 				A56D58852ACDDB4100508D2C /* Ghostty.Shell.swift */,
@@ -636,6 +639,7 @@
 				A5CEAFDE29B8058B00646FDA /* SplitView.Divider.swift in Sources */,
 				A5E112972AF7401B00C6E0C2 /* ClipboardConfirmationView.swift in Sources */,
 				A514C8D82B54DC6800493A16 /* Ghostty.App.swift in Sources */,
+				6517A0E32D162169005B6A1D /* Ghostty.Runetale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

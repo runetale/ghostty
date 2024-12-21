@@ -30,6 +30,7 @@ typedef void* ghostty_app_t;
 typedef void* ghostty_config_t;
 typedef void* ghostty_surface_t;
 typedef void* ghostty_inspector_t;
+typedef void* ghostty_runetale_t;
 
 // All the types below are fully defined and must be kept in sync with
 // their Zig counterparts. Any changes to these types MUST have an associated
@@ -643,6 +644,14 @@ typedef struct {
 
 //-------------------------------------------------------------------
 // Published API
+
+// Runetale original header, defined by src/apprt/embedded.zig(application
+// runtime).
+// now we can't using src/Config/CAPI.zig that's using for only "Ghostty"
+// Config.
+
+ghostty_runetale_t runetale_new(const char*);
+ghostty_runetale_t runetale_compose_node(ghostty_runetale_t, const char*);
 
 int ghostty_init(void);
 void ghostty_cli_main(uintptr_t, char**);
