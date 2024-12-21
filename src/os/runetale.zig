@@ -20,8 +20,13 @@ const c = if (builtin.os.tag != .windows) @cImport({
 pub fn isLaunchedRunetale() bool {
     return switch (builtin.os.tag) {
         .macos => return checkMacProcess(),
-
-        .linux => return checkLinuxProcess(),
+        .linux => linux: {
+             if (try checkMacProcess()) |proc| {
+                std.debug.print("{}\n", .{proc});
+                return true;
+            }
+            break :linux false;
+        },
 
         .windows => false,
 
@@ -54,18 +59,19 @@ fn checkLinuxProcess() bool {
     return false;
 }
 
-fn checkMacProcess() bool {
+fn checkMacProcess() !?bool {
     const allocator = std.heap.page_allocator;
 
-    const run = std.process.Child.run(.{
+    const run = try std.process.Child.run(.{
         .allocator = allocator,
         .argv = &[_][]const u8{ "/bin/sh", "-c", "ps aux | grep runetaled" },
     });
 
     if (run.term == .Exited and run.term.Exited == 0) {
         const result = trimSpace(run.stdout);
+        std.debug.print("{s}\n", .{result});
         // todo: check buf?
-        if (0 > result.len) return false;
+        // if (0 > result.len) return false;
         return true;
     }
 
