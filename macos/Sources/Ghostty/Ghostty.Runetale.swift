@@ -10,7 +10,6 @@ import GhosttyKit
 extension Ghostty {
     class Runetale {
         init() {
-            ghostty_ifconfig()
         }
     }
 }

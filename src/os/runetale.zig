@@ -1,9 +1,11 @@
+// this functions using for runetale cli commands by go.
+// basically called from 'src/apprt/embedded_runetale.zig'.
+
 const builtin = @import("builtin");
 const build_config = @import("../build_config.zig");
 const posix = std.posix;
 const internal_os = @import("main.zig");
 const std = @import("std");
-
 const log = std.log.scoped(.runetale);
 
 comptime {
@@ -80,4 +82,10 @@ fn checkMacProcess() !?bool {
 
 fn trimSpace(input: []const u8) []const u8 {
     return std.mem.trim(u8, input, " \n\t");
+}
+
+pub fn composeNode(
+    compose_key: [*:0]const u8,
+) [*:0]const u8 {
+    return compose_key;
 }

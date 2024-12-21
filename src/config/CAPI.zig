@@ -10,10 +10,6 @@ const Key = @import("key.zig").Key;
 
 const log = std.log.scoped(.config);
 
-// Add Orginal CAPIs by Runetale
-export fn ghostty_ifconfig() void {
-}
-
 /// Create a new configuration filled with the initial default values.
 export fn ghostty_config_new() ?*Config {
     const result = global.alloc.create(Config) catch |err| {

@@ -1252,6 +1252,23 @@ pub const Inspector = struct {
     }
 };
 
+// Original Runetale import.
+const runetale = @import("../os/runetale.zig");
+pub const Runetale = struct {
+    // your node ips
+    ip: [*:0]const u8,
+    
+    // store is build cache for p2p nodes
+    storePath: [*:0]const u8,
+
+    pub fn init(storePath: [*:0]const u8,) !Runetale {
+        return .{
+            .ip = "",
+            .storePath = storePath,
+        };
+    }
+};
+
 // C API
 pub const CAPI = struct {
     const global = &@import("../global.zig").state;
@@ -1900,6 +1917,37 @@ pub const CAPI = struct {
             nswindow.msgSend(usize, objc.sel("windowNumber"), .{}),
             @intCast(config.@"background-blur-radius"),
         );
+    }
+
+    // Original Runetale C API.
+
+    // Create new runetale.
+    export fn runetale_new(
+        storePath: [*:0]const u8,
+    ) ?*Runetale {
+        return runetale_new_(storePath) catch |err| {
+            log.err("error initializing runetale err={}", .{err});
+            return null;
+        };
+    }
+
+    fn runetale_new_(
+        storePath: [*:0]const u8,
+    ) !*Runetale {
+        const rt = try global.alloc.create(Runetale);
+        errdefer global.alloc.destroy(rt);
+        rt.* = try Runetale.init(storePath);
+        return rt;
+    }
+
+    // Compose new node.
+    export fn runetale_compose_node(
+        v: *Runetale,
+        compose_key: [*:0]const u8,
+    ) *Runetale {
+       const ip =  runetale.composeNode(compose_key);
+       v.ip = ip;
+       return v;
     }
 
     /// See ghostty_set_window_background_blur

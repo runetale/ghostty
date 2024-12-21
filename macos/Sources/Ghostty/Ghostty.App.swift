@@ -51,8 +51,6 @@ extension Ghostty {
                 readiness = .error
             }
             
-            Runetale()
-            
             // Initialize the global configuration.
             self.config = Config()
             if self.config.config == nil {
